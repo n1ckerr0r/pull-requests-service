@@ -1,0 +1,72 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+output:
+  formats: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+  nolintlint:
+    require-explanation: true
+    require-specific: true
+  gosec:
+    excludes:
+      - G404
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+
+    - gofmt
+    - goimports
+    - gci
+
+    - bodyclose
+    - copyloopvar
+    - goconst
+    - gocyclo
+    - gosec
+    - misspell
+    - prealloc
+    - revive
+    - sqlclosecheck
+
+    - rowserrcheck
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - dupl
+        - funlen
+
+    - path: _test\.go
+      linters:
+        - revive
+      text: "exported.*should have comment"
+
+  max-issues-per-linter: 0
+  max-same-issues: 0
